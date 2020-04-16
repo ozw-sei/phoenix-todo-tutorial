@@ -11,7 +11,8 @@ services:
   postgres:
     build: ./dockerfiles/db
     volumes:
-      - ${DATA_PATH_HOST}/${COMPOSE_PROJECT_NAME}/postgres:/var/lib/postgresql/data
+      - "db-data:/var/lib/postgresql/data"
+      #- ${DATA_PATH_HOST}/${COMPOSE_PROJECT_NAME}/postgres:/var/lib/postgresql/data
     ports:
       - "${POSTGRES_PORT}:5432"
     environment:
@@ -26,3 +27,12 @@ services:
       API_URL: ./swagger/swagger.json
     ports:
       - "${SWAGGER_UI_PORT}:8080"
+
+      # volumes を定義する
+volumes:
+    # volume の名前を指定
+  db-data:
+    # Compose の外ですでに作成済みの volume を指定する場合は ture を設定する。
+    # そうすると、 docker-compose up 時に Compose は volume を作成しようとしません。
+    # かつ、指定した volume が存在しないとエラーを raise します。
+    external: true      
