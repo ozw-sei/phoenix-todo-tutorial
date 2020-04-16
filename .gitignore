@@ -1,3 +1,14 @@
 .env
 .elixir_ls
 dockerfiles/db/.data
+/_build
+/deps
+/doc
+/tmp
+/node_modules
+/assets/node_modules
+/installer/_build
+/installer/tmp
+/installer/doc
+/installer/deps
+erl_crash.dump
